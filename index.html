@@ -663,6 +663,8 @@ svg.cf .vl{stroke:var(--muted);stroke-dasharray:3 4;stroke-width:1}
 /* Glassmorphism */
 :root{
   --wash:linear-gradient(rgba(236,233,225,.78),rgba(236,233,225,.78));
+  --field-glass:rgba(255,255,255,.40);--field-glass-focus:rgba(255,255,255,.72);
+  --field-blur:blur(14px) saturate(160%);
   --glass:rgba(255,255,255,.52);
   --glass-strong:rgba(255,255,255,.7);
   --glass-soft:rgba(255,255,255,.34);
@@ -677,13 +679,13 @@ svg.cf .vl{stroke:var(--muted);stroke-dasharray:3 4;stroke-width:1}
   :root:not([data-theme="light"]){
     --glass:rgba(34,34,31,.5);--glass-strong:rgba(48,48,44,.62);--glass-soft:rgba(255,255,255,.06);--glass-edge:rgba(255,255,255,.14);
     --glass-shadow:0 12px 36px rgba(0,0,0,.4),inset 0 1px 0 rgba(255,255,255,.1);
-    --o1:rgba(233,230,107,.26);--o2:rgba(229,139,106,.3);--o3:rgba(70,160,130,.28);--o4:rgba(90,120,190,.26);--bg:#0D0D0C;--muted:#B0ACA2;--wash:linear-gradient(rgba(10,10,9,.80),rgba(10,10,9,.80));
+    --o1:rgba(233,230,107,.26);--o2:rgba(229,139,106,.3);--o3:rgba(70,160,130,.28);--o4:rgba(90,120,190,.26);--bg:#0D0D0C;--muted:#B0ACA2;--wash:linear-gradient(rgba(10,10,9,.80),rgba(10,10,9,.80));--field-glass:rgba(255,255,255,.08);--field-glass-focus:rgba(255,255,255,.16);
   }
 }
 :root[data-theme="dark"]{
   --glass:rgba(34,34,31,.5);--glass-strong:rgba(48,48,44,.62);--glass-soft:rgba(255,255,255,.06);--glass-edge:rgba(255,255,255,.14);
   --glass-shadow:0 12px 36px rgba(0,0,0,.4),inset 0 1px 0 rgba(255,255,255,.1);
-  --o1:rgba(233,230,107,.26);--o2:rgba(229,139,106,.3);--o3:rgba(70,160,130,.28);--o4:rgba(90,120,190,.26);--bg:#0D0D0C;--muted:#B0ACA2;--wash:linear-gradient(rgba(10,10,9,.80),rgba(10,10,9,.80));
+  --o1:rgba(233,230,107,.26);--o2:rgba(229,139,106,.3);--o3:rgba(70,160,130,.28);--o4:rgba(90,120,190,.26);--bg:#0D0D0C;--muted:#B0ACA2;--wash:linear-gradient(rgba(10,10,9,.80),rgba(10,10,9,.80));--field-glass:rgba(255,255,255,.08);--field-glass-focus:rgba(255,255,255,.16);
 }
 body{background:var(--bg)}
 body::before{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;
@@ -693,7 +695,7 @@ body::before{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;
     radial-gradient(46vmax 46vmax at 78% 96%,var(--o3),transparent 62%),
     radial-gradient(40vmax 40vmax at 4% 88%,var(--o4),transparent 62%),
     var(--wash),
-    url("assets/bg-dashboard.jpg") center 55%/cover no-repeat var(--bg)}
+    url("assets/bg-dashboard.jpg?v=2") center 62%/cover no-repeat var(--bg)}
 /* main frosted containers */
 .side,.pipe,.tpanel,.panel,.stat,.icard,.sheet,.modal,.search,.pillsel,.iconbtn,.org{
   background:var(--glass);-webkit-backdrop-filter:var(--blur);backdrop-filter:var(--blur);
@@ -706,6 +708,17 @@ body::before{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;
 /* inner tiles: translucent only, no extra blur */
 .stage,.scheme,.sec,.fchip,.btn,.kchip,.toggle,.fld input,.fld select,.modal textarea,.tw{
   background:var(--glass-soft);border:1px solid var(--glass-edge);box-shadow:inset 0 1px 0 var(--glass-edge)}
+/* field containers: frosted glass (input, select, filter chip, textarea, toggle) */
+.fld input,.fld select,.fchip,.licin,.modal textarea,.kchip,.toggle,
+.rmt td:nth-child(n+2) select,.rmt td:nth-child(n+2) input{
+  background-color:var(--field-glass);
+  -webkit-backdrop-filter:var(--field-blur);backdrop-filter:var(--field-blur);
+  border:1px solid var(--glass-edge);
+  box-shadow:inset 0 1px 0 var(--glass-edge),0 4px 14px rgba(0,0,0,.07)}
+.fld input:focus,.fld select:focus,.licin:focus,.modal textarea:focus,
+.rmt td:nth-child(n+2) select:focus,.rmt td:nth-child(n+2) input:focus{
+  background-color:var(--field-glass-focus);outline:none;
+  border-color:var(--ink);box-shadow:0 0 0 3px var(--glass-edge),0 6px 18px rgba(0,0,0,.12)}
 .stage{border-width:2px}
 .stage:hover{border-color:var(--glass-edge);background:var(--glass)}
 .stage[aria-pressed="true"]{background:var(--glass-strong);border-color:var(--ink);box-shadow:0 6px 20px rgba(0,0,0,.12)}
@@ -737,8 +750,8 @@ th{background:var(--glass-soft)}
   @media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--glass:rgba(34,34,31,.96);--glass-strong:#2A2A27}}
 }
 @media (prefers-reduced-transparency:reduce){
-  :root{--glass:#F6F4EE;--glass-strong:#FBFAF6;--glass-soft:#EEEBE3}
-  @media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--glass:#1D1D1B;--glass-strong:#262623;--glass-soft:#2A2A27}}
+  :root{--glass:#F6F4EE;--glass-strong:#FBFAF6;--glass-soft:#EEEBE3;--field-glass:#F6F4EE;--field-glass-focus:#FFFFFF}
+  @media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--glass:#1D1D1B;--glass-strong:#262623;--glass-soft:#2A2A27;--field-glass:#2A2A27;--field-glass-focus:#32322E}}
   .side,.pipe,.tpanel,.panel,.stat,.icard,.sheet,.modal,.search,.pillsel,.iconbtn,.org,.scrim,.navscrim{-webkit-backdrop-filter:none;backdrop-filter:none}
 }
 </style>
