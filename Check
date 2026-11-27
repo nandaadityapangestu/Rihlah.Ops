@@ -1,3 +1,0 @@
-printf ".env\n.env.*\n*.pem\nnode_modules/\n.vercel/\n" >> .gitignore
-git rm --cached .env 2>/dev/null
-
