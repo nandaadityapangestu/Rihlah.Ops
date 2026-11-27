@@ -1,2 +1,5 @@
 printf ".env\n.env.*\n*.pem\nnode_modules/\n.vercel/\n" >> .gitignore
 git rm --cached .env 2>/dev/null
+
+git grep -nE "service_role|sb_secret_|eyJ[A-Za-z0-9_-]{20,}"
+git log -p -S"service_role" --all | head
