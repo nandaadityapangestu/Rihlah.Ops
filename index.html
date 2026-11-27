@@ -662,6 +662,7 @@ svg.cf .vl{stroke:var(--muted);stroke-dasharray:3 4;stroke-width:1}
 }
 /* Glassmorphism */
 :root{
+  --wash:linear-gradient(rgba(236,233,225,.78),rgba(236,233,225,.78));
   --glass:rgba(255,255,255,.52);
   --glass-strong:rgba(255,255,255,.7);
   --glass-soft:rgba(255,255,255,.34);
@@ -676,13 +677,13 @@ svg.cf .vl{stroke:var(--muted);stroke-dasharray:3 4;stroke-width:1}
   :root:not([data-theme="light"]){
     --glass:rgba(34,34,31,.5);--glass-strong:rgba(48,48,44,.62);--glass-soft:rgba(255,255,255,.06);--glass-edge:rgba(255,255,255,.14);
     --glass-shadow:0 12px 36px rgba(0,0,0,.4),inset 0 1px 0 rgba(255,255,255,.1);
-    --o1:rgba(233,230,107,.26);--o2:rgba(229,139,106,.3);--o3:rgba(70,160,130,.28);--o4:rgba(90,120,190,.26);--bg:#0D0D0C;--muted:#B0ACA2;
+    --o1:rgba(233,230,107,.26);--o2:rgba(229,139,106,.3);--o3:rgba(70,160,130,.28);--o4:rgba(90,120,190,.26);--bg:#0D0D0C;--muted:#B0ACA2;--wash:linear-gradient(rgba(10,10,9,.80),rgba(10,10,9,.80));
   }
 }
 :root[data-theme="dark"]{
   --glass:rgba(34,34,31,.5);--glass-strong:rgba(48,48,44,.62);--glass-soft:rgba(255,255,255,.06);--glass-edge:rgba(255,255,255,.14);
   --glass-shadow:0 12px 36px rgba(0,0,0,.4),inset 0 1px 0 rgba(255,255,255,.1);
-  --o1:rgba(233,230,107,.26);--o2:rgba(229,139,106,.3);--o3:rgba(70,160,130,.28);--o4:rgba(90,120,190,.26);--bg:#0D0D0C;--muted:#B0ACA2;
+  --o1:rgba(233,230,107,.26);--o2:rgba(229,139,106,.3);--o3:rgba(70,160,130,.28);--o4:rgba(90,120,190,.26);--bg:#0D0D0C;--muted:#B0ACA2;--wash:linear-gradient(rgba(10,10,9,.80),rgba(10,10,9,.80));
 }
 body{background:var(--bg)}
 body::before{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;
@@ -690,7 +691,9 @@ body::before{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;
     radial-gradient(42vmax 42vmax at 8% 6%,var(--o1),transparent 62%),
     radial-gradient(38vmax 38vmax at 92% 10%,var(--o2),transparent 62%),
     radial-gradient(46vmax 46vmax at 78% 96%,var(--o3),transparent 62%),
-    radial-gradient(40vmax 40vmax at 4% 88%,var(--o4),transparent 62%)}
+    radial-gradient(40vmax 40vmax at 4% 88%,var(--o4),transparent 62%),
+    var(--wash),
+    url("assets/bg-dashboard.jpg") center 55%/cover no-repeat var(--bg)}
 /* main frosted containers */
 .side,.pipe,.tpanel,.panel,.stat,.icard,.sheet,.modal,.search,.pillsel,.iconbtn,.org{
   background:var(--glass);-webkit-backdrop-filter:var(--blur);backdrop-filter:var(--blur);
