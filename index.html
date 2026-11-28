@@ -741,7 +741,14 @@ th{background:var(--glass-soft)}
 /* Banner hero: foto hijau + kotak kaca transparan 25% dengan blur */
 .dh{position:relative;display:flex;flex-direction:column;justify-content:space-between;gap:22px;min-height:260px;padding:24px 26px;border-radius:24px;overflow:hidden;isolation:isolate;color:#141414;
   border:1px solid var(--glass-edge);
-  background:linear-gradient(90deg,rgba(246,251,241,.94) 0%,rgba(246,251,241,.82) 38%,rgba(246,251,241,.3) 62%,rgba(246,251,241,0) 82%),url("assets/hero-green.jpg") center 70%/cover no-repeat #cfe3c4}
+  background:url("assets/hero-poster.jpg") center/cover no-repeat #a9c6cc}
+.dh-video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:-2;pointer-events:none}
+/* lapisan pudar: menjaga teks gelap tetap terbaca di atas video yang terang/gelap */
+.dh::before{content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;
+  background:
+    linear-gradient(90deg,rgba(246,251,241,.82) 0%,rgba(246,251,241,.4) 36%,rgba(246,251,241,0) 66%),
+    linear-gradient(0deg,rgba(246,251,241,.5) 0%,rgba(246,251,241,.2) 42%,rgba(246,251,241,0) 68%)}
+@media (prefers-reduced-motion:reduce){.dh-video{display:none}}
 .dh-txt h2{margin:0 0 6px;font-size:clamp(1.4rem,2.4vw,2rem);font-weight:600;letter-spacing:-.02em;line-height:1.1}
 .dh-txt p{max-width:46ch;font-size:.9rem;color:rgba(20,20,20,.74)}
 .dh-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}
@@ -754,7 +761,8 @@ th{background:var(--glass-soft)}
 .dh-box b .dh-of{display:inline;font-size:.9rem;font-weight:500}
 .dh-box>span{display:block;font-size:.78rem;color:rgba(20,20,20,.7)}
 @media (max-width:900px){.dh-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
-@media (max-width:760px){.dh{min-height:0;padding:18px;border-radius:20px;background:linear-gradient(180deg,rgba(246,251,241,.95) 0%,rgba(246,251,241,.86) 32%,rgba(246,251,241,.35) 70%,rgba(246,251,241,.1) 100%),url("assets/hero-green.jpg") center 70%/cover no-repeat #cfe3c4}}
+@media (max-width:760px){.dh{min-height:0;padding:18px;border-radius:20px}
+  .dh::before{background:linear-gradient(180deg,rgba(246,251,241,.92) 0%,rgba(246,251,241,.74) 38%,rgba(246,251,241,.52) 100%)}}
 @media (prefers-reduced-transparency:reduce){.dh-box{-webkit-backdrop-filter:none;backdrop-filter:none;background:rgba(255,255,255,.78)}}
 @supports not ((backdrop-filter:blur(1px)) or (-webkit-backdrop-filter:blur(1px))){.dh-box{background:rgba(255,255,255,.7)}}
 
@@ -1229,7 +1237,7 @@ function heroHTML(sc){
   sc.forEach(function(p){var d=depOf(p)||{price:0};if(stat(p)==='lengkap')t.siap++;if(stat(p)==='kritis')t.kritis++;t.tagihan+=d.price;t.terbayar+=Math.min(paidOf(p),d.price);});
   var pr=t.tagihan>0?Math.round(t.terbayar/t.tagihan*100):0;
   function box(l,v,n){return '<div class="dh-box"><small>'+l+'</small><b class="num">'+v+'</b><span>'+n+'</span></div>';}
-  return '<section class="dh" aria-label="Ringkasan"><div class="dh-txt"><h2>Kesiapan Jamaah</h2><p>Pantau dokumen, visa, dan pelunasan semua keberangkatan dari satu tempat.</p></div>'+
+  return '<section class="dh" aria-label="Ringkasan"><video class="dh-video" autoplay muted loop playsinline preload="metadata" poster="assets/hero-poster.jpg" aria-hidden="true" tabindex="-1"><source src="assets/hero-ramadan.mp4" type="video/mp4"></video><div class="dh-txt"><h2>Kesiapan Jamaah</h2><p>Pantau dokumen, visa, dan pelunasan semua keberangkatan dari satu tempat.</p></div>'+
     '<div class="dh-grid">'+
       box('Total jamaah',t.n,S.deps.length+' paket keberangkatan')+
       box('Siap berangkat',t.siap+' <small class="dh-of">/ '+t.n+'</small>','dokumen lengkap')+
