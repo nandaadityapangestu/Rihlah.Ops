@@ -195,7 +195,7 @@ svg.ic{width:20px;height:20px;flex:none;fill:none;stroke:currentColor;stroke-wid
 }
 
 /* Nav glass: transparent panel, items fit edge to edge */
-.side .nav{background:var(--glass-soft);border:1px solid var(--glass-edge);border-radius:24px;padding:6px;margin:0;gap:2px;-webkit-backdrop-filter:blur(14px) saturate(1.2);backdrop-filter:blur(14px) saturate(1.2)}
+.side .nav{background:var(--glass-soft);border:1px solid var(--glass-edge);border-radius:24px;padding:6px;margin:0;gap:2px;-webkit-backdrop-filter:blur(10px) saturate(1.2);backdrop-filter:blur(10px) saturate(1.2)}
 .nav a,.nav .navbtn{width:100%;box-sizing:border-box}
 @media (min-width:901px){.app.collapsed .side .nav{padding:4px}}
 /* Main */
@@ -667,7 +667,7 @@ svg.cf .vl{stroke:var(--muted);stroke-dasharray:3 4;stroke-width:1}
   --glass-soft:rgba(255,255,255,.34);
   --glass-edge:rgba(255,255,255,.75);
   --glass-shadow:0 10px 34px rgba(60,52,30,.12),inset 0 1px 0 rgba(255,255,255,.85);
-  --blur:blur(22px) saturate(165%);
+  --blur:blur(10px) saturate(130%);
   --o1:rgba(179,238,112,.95);--o2:rgba(242,160,128,.8);--o3:rgba(150,208,186,.85);--o4:rgba(176,203,240,.8);
   --bg:#E8E5DC;
   --muted:#5F5B53;
@@ -725,7 +725,7 @@ body::before{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;
 .nav a:hover,.navbtn:hover{background:var(--glass-soft)}
 .nav a[aria-current="page"]{box-shadow:0 6px 18px rgba(0,0,0,.28)}
 th{background:var(--glass-soft)}
-.scrim,.navscrim{-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px)}
+.scrim,.navscrim{-webkit-backdrop-filter:blur(4px);backdrop-filter:blur(4px)}
 .toast{background:var(--ink);box-shadow:0 10px 28px rgba(0,0,0,.35)}
 @media (max-width:900px){.side{border-radius:0 28px 28px 0;background:var(--glass-strong)}}
 @media (max-width:760px){.sheet{border-radius:0;border-width:0}}
@@ -752,7 +752,7 @@ th{background:var(--glass-soft)}
 .dh-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}
 .dh-box{min-width:0;padding:14px 16px;border-radius:18px;
   background:rgba(0,0,0,.25);
-  -webkit-backdrop-filter:blur(16px) saturate(140%);backdrop-filter:blur(16px) saturate(140%);
+  -webkit-backdrop-filter:blur(10px) saturate(130%);backdrop-filter:blur(10px) saturate(130%);
   border:1px solid rgba(255,255,255,.28);box-shadow:0 6px 20px rgba(0,0,0,.2),inset 0 1px 0 rgba(255,255,255,.22);color:#fff}
 .dh-box small{display:block;font-size:.78rem;font-weight:600;color:rgba(255,255,255,.88)}
 .dh-hd{display:flex;align-items:center;gap:10px}
@@ -772,7 +772,7 @@ th{background:var(--glass-soft)}
   --bg:#D1D1D1;--surface:#FFFFFF;--panel:#FAFAF8;--card:#F3F3F0;--card-2:#E9E9E5;--line:#E8E8E3;--muted:#4E524C;
   --glass:rgba(255,255,255,.5);--glass-strong:rgba(255,255,255,.72);--glass-soft:rgba(255,255,255,.4);--glass-edge:rgba(255,255,255,.72);
   --glass-shadow:0 8px 32px rgba(30,36,32,.12),inset 0 1px 0 rgba(255,255,255,.7);
-  --blur:blur(20px) saturate(160%);--o1:transparent;--o2:transparent;--o3:transparent;--o4:transparent;
+  --blur:blur(10px) saturate(130%);--o1:transparent;--o2:transparent;--o3:transparent;--o4:transparent;
 }
 @media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--o1:transparent;--o2:transparent;--o3:transparent;--o4:transparent}}
 :root[data-theme="dark"]{--o1:transparent;--o2:transparent;--o3:transparent;--o4:transparent}
@@ -848,6 +848,28 @@ th{font-size:.72rem}
 .org .ico,.stage .chip{background:var(--glass-strong)}
 .trow:hover,.agrow:hover{background:var(--glass-soft)}
 @media (prefers-reduced-transparency:reduce){:root{--sheen:none}}
+/* ===== Blur tipis (10px) + bayangan diratakan ===== */
+:root{
+  --sh-frame:0 8px 24px rgba(30,36,32,.10),inset 0 1px 0 rgba(255,255,255,.7);
+  --sh-el:0 3px 10px rgba(30,36,32,.08),inset 0 1px 0 rgba(255,255,255,.7);
+  --sh-hover:0 10px 28px rgba(30,36,32,.14),inset 0 1px 0 rgba(255,255,255,.7);
+  --sh-pop:0 16px 40px rgba(30,36,32,.16),inset 0 1px 0 rgba(255,255,255,.7);
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--sh-frame:0 8px 24px rgba(0,0,0,.34),inset 0 1px 0 rgba(255,255,255,.08);--sh-el:0 3px 10px rgba(0,0,0,.28),inset 0 1px 0 rgba(255,255,255,.08);--sh-hover:0 10px 28px rgba(0,0,0,.42),inset 0 1px 0 rgba(255,255,255,.1);--sh-pop:0 16px 40px rgba(0,0,0,.5),inset 0 1px 0 rgba(255,255,255,.1)}}
+:root[data-theme="dark"]{--sh-frame:0 8px 24px rgba(0,0,0,.34),inset 0 1px 0 rgba(255,255,255,.08);--sh-el:0 3px 10px rgba(0,0,0,.28),inset 0 1px 0 rgba(255,255,255,.08);--sh-hover:0 10px 28px rgba(0,0,0,.42),inset 0 1px 0 rgba(255,255,255,.1);--sh-pop:0 16px 40px rgba(0,0,0,.5),inset 0 1px 0 rgba(255,255,255,.1)}
+:root{--glass-shadow:var(--sh-frame);--glass-shadow-sm:var(--sh-el)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--glass-shadow:var(--sh-frame);--glass-shadow-sm:var(--sh-el)}}
+:root[data-theme="dark"]{--glass-shadow:var(--sh-frame);--glass-shadow-sm:var(--sh-el)}
+/* frame & kartu */
+.side,.pipe,.tpanel,.panel,.stat,.icard,.search,.pillsel,.iconbtn,.sheet,.modal,.dh,.dh-box,.toast,.side .nav{box-shadow:var(--sh-frame)}
+.stat:hover,.icard:hover,.panel:hover,.tpanel:hover,.pipe:hover{box-shadow:var(--sh-hover)}
+/* tombol & elemen kecil */
+.btn,.kchip,.toggle,.fchip,.chip2,.seg button,.navbtn,.themeswitch,.dh-ic,.ai,.btn.primary,.stage[aria-pressed="true"],.nav a[aria-current="page"]{box-shadow:var(--sh-el)}
+.btn:not(:disabled):hover,.btn.primary:not(:disabled):hover,.btn.danger:not(:disabled):hover,.btn.ghost:not(:disabled):hover,
+.dep-banner .bn-act .btn:hover,.toggle:hover,.toggle[aria-pressed="true"]:hover,.kchip:not(:disabled):hover,.kchip[aria-pressed="true"]:hover,
+.seg button:hover,.seg button[aria-pressed="true"]:hover,.iconbtn:hover,.navbtn:hover{box-shadow:var(--sh-hover)}
+/* popover */
+#ddm{box-shadow:var(--sh-pop)}
 </style>
 
 <div class="app" id="app">
