@@ -738,25 +738,76 @@ th{background:var(--glass-soft)}
   @media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--glass:#1D1D1B;--glass-strong:#262623;--glass-soft:#2A2A27}}
   .side,.pipe,.tpanel,.panel,.stat,.icard,.sheet,.modal,.search,.pillsel,.iconbtn,.org,.scrim,.navscrim{-webkit-backdrop-filter:none;backdrop-filter:none}
 }
-/* Banner hero: foto bukit pasir + kotak kaca transparan 25% dengan blur */
-.dh{position:relative;display:flex;flex-direction:column;justify-content:space-between;gap:24px;min-height:290px;padding:26px 28px;border-radius:30px;overflow:hidden;isolation:isolate;color:#141414;
-  border:1px solid rgba(255,255,255,.7);box-shadow:0 10px 34px rgba(60,52,30,.12);
-  background:url("assets/hero-dune.jpg") center 88%/cover no-repeat #b9c8c9}
-.dh-txt h2{margin:0 0 8px;font-size:clamp(1.6rem,3vw,2.5rem);font-weight:600;letter-spacing:-.02em;line-height:1.08}
-.dh-txt p{max-width:46ch;font-size:.95rem;color:rgba(20,20,20,.74)}
+/* Banner hero: foto hijau + kotak kaca transparan 25% dengan blur */
+.dh{position:relative;display:flex;flex-direction:column;justify-content:space-between;gap:22px;min-height:260px;padding:24px 26px;border-radius:24px;overflow:hidden;isolation:isolate;color:#141414;
+  border:1px solid var(--glass-edge);
+  background:linear-gradient(90deg,rgba(246,251,241,.94) 0%,rgba(246,251,241,.82) 38%,rgba(246,251,241,.3) 62%,rgba(246,251,241,0) 82%),url("assets/hero-green.jpg") center 70%/cover no-repeat #cfe3c4}
+.dh-txt h2{margin:0 0 6px;font-size:clamp(1.4rem,2.4vw,2rem);font-weight:600;letter-spacing:-.02em;line-height:1.1}
+.dh-txt p{max-width:46ch;font-size:.9rem;color:rgba(20,20,20,.74)}
 .dh-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}
-.dh-box{min-width:0;padding:14px 16px;border-radius:20px;
+.dh-box{min-width:0;padding:14px 16px;border-radius:18px;
   background:rgba(255,255,255,.25);
   -webkit-backdrop-filter:blur(16px) saturate(140%);backdrop-filter:blur(16px) saturate(140%);
-  border:1px solid rgba(255,255,255,.6);box-shadow:0 8px 24px rgba(40,60,70,.12),inset 0 1px 0 rgba(255,255,255,.55)}
-.dh-box small{display:block;font-size:.82rem;font-weight:600;color:rgba(20,20,20,.72)}
-.dh-box b{display:block;margin:4px 0 2px;font-size:1.7rem;font-weight:500;letter-spacing:-.02em;line-height:1.1;overflow-wrap:anywhere}
-.dh-box b .dh-of{display:inline;font-size:.95rem;font-weight:500}
-.dh-box>span{display:block;font-size:.8rem;color:rgba(20,20,20,.68)}
+  border:1px solid rgba(255,255,255,.6);box-shadow:0 6px 20px rgba(20,50,20,.12),inset 0 1px 0 rgba(255,255,255,.5)}
+.dh-box small{display:block;font-size:.78rem;font-weight:600;color:rgba(20,20,20,.74)}
+.dh-box b{display:block;margin:4px 0 2px;font-size:1.45rem;font-weight:500;letter-spacing:-.02em;line-height:1.1;overflow-wrap:anywhere}
+.dh-box b .dh-of{display:inline;font-size:.9rem;font-weight:500}
+.dh-box>span{display:block;font-size:.78rem;color:rgba(20,20,20,.7)}
 @media (max-width:900px){.dh-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
-@media (max-width:760px){.dh{min-height:0;padding:20px;border-radius:26px}}
+@media (max-width:760px){.dh{min-height:0;padding:18px;border-radius:20px;background:linear-gradient(180deg,rgba(246,251,241,.95) 0%,rgba(246,251,241,.86) 32%,rgba(246,251,241,.35) 70%,rgba(246,251,241,.1) 100%),url("assets/hero-green.jpg") center 70%/cover no-repeat #cfe3c4}}
 @media (prefers-reduced-transparency:reduce){.dh-box{-webkit-backdrop-filter:none;backdrop-filter:none;background:rgba(255,255,255,.78)}}
 @supports not ((backdrop-filter:blur(1px)) or (-webkit-backdrop-filter:blur(1px))){.dh-box{background:rgba(255,255,255,.7)}}
+
+/* ===== Minimalis: latar putih polos, kartu putih bergaris tipis, jarak dan font lebih rapi ===== */
+:root{
+  --bg:#FFFFFF;--surface:#FFFFFF;--panel:#FAFAF8;--card:#F3F3F0;--card-2:#E9E9E5;--line:#E8E8E3;--muted:#62665F;
+  --glass:#FFFFFF;--glass-strong:#FFFFFF;--glass-soft:#F6F6F3;--glass-edge:#E8E8E3;
+  --glass-shadow:0 1px 2px rgba(20,24,20,.04),0 4px 14px rgba(20,24,20,.04);
+  --blur:none;--o1:transparent;--o2:transparent;--o3:transparent;--o4:transparent;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--o1:transparent;--o2:transparent;--o3:transparent;--o4:transparent}}
+:root[data-theme="dark"]{--o1:transparent;--o2:transparent;--o3:transparent;--o4:transparent}
+body{font-size:14px;line-height:1.5}
+.app{gap:24px;padding-block:24px}
+.main,.view{gap:20px}
+.mhead h1{font-size:clamp(1.5rem,2.2vw,1.85rem);font-weight:600;letter-spacing:-.02em}
+.mfoot{font-size:.78rem}
+@media (min-width:901px){.side{border-radius:24px}}
+.pipe,.tpanel{border-radius:24px}
+.pipe{padding:12px;gap:4px}
+.tpanel{padding:16px}
+.stage{border:1.5px solid transparent;border-radius:18px;padding:14px 16px 16px;gap:8px;box-shadow:none}
+.stage b{font-size:2rem}
+.stage .chip{font-size:.8rem;padding:3px 11px 3px 9px}
+.stage small{font-size:.8rem}
+.stat{border-radius:20px;padding:14px 18px}
+.stat b{font-size:1.5rem}
+.icard .big{font-size:2rem}
+.icard small{font-size:.8rem}
+.dep h3{font-size:1.08rem}
+.deps{gap:18px}
+.sec{border-radius:18px;padding:18px;gap:14px}
+.sec h3{font-size:.95rem}
+.modal{border-radius:20px}
+.sheet{gap:18px}
+.sheet-head h2{font-size:1.15rem}
+.search,.pillsel{height:44px}
+.search{padding:0 16px}
+.pillsel select{height:44px}
+.btn{font-size:.86rem;padding:8px 16px}
+.btn.big{height:44px;font-size:.9rem}
+.tools{gap:10px}
+.filters{gap:10px;padding:2px 2px 14px}
+.thead{font-size:.8rem;height:42px}
+.trow{padding-block:14px}
+.who small,.l2{font-size:.8rem}
+th{font-size:.72rem}
+.fld{gap:6px}
+.fld label,.fld .lb{font-size:.76rem;font-weight:500}
+.fld input,.fld select{padding:10px 14px;font-size:.9rem;border-radius:12px}
+.g2{gap:14px}
+.tier{gap:10px}
+.legend{font-size:.78rem}
 </style>
 
 <div class="app" id="app">
