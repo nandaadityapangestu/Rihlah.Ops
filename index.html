@@ -794,7 +794,7 @@ body::after{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;
 .pipe,.tpanel{border-radius:24px}
 .pipe{padding:12px;gap:4px}
 .tpanel{padding:16px}
-.stage{border:1.5px solid transparent;border-radius:18px;padding:14px 16px 16px;gap:8px;box-shadow:none}
+.stage{border:1.5px solid var(--glass-edge);border-radius:18px;padding:14px 16px 16px;gap:8px}
 .stage b{font-size:2rem}
 .stage .chip{font-size:.8rem;padding:3px 11px 3px 9px}
 .stage small{font-size:.8rem}
@@ -828,6 +828,26 @@ th{font-size:.72rem}
 .legend{font-size:.78rem}
 @supports not ((backdrop-filter:blur(1px)) or (-webkit-backdrop-filter:blur(1px))){:root{--glass:rgba(255,255,255,.9);--glass-strong:#FFFFFF;--glass-soft:#F4F4F1}}
 @media (prefers-reduced-transparency:reduce){:root{--glass:#FFFFFF;--glass-strong:#FFFFFF;--glass-soft:#F4F4F1;--blur:none}}
+/* ===== Glassmorphism seragam di setiap frame / box container ===== */
+:root{
+  --sheen:linear-gradient(135deg,rgba(255,255,255,.38) 0%,rgba(255,255,255,.08) 48%,rgba(255,255,255,0) 100%);
+  --glass-shadow-sm:0 4px 14px rgba(30,36,32,.07),inset 0 1px 0 rgba(255,255,255,.7),inset 0 -1px 0 rgba(255,255,255,.18);
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--sheen:linear-gradient(135deg,rgba(255,255,255,.09) 0%,rgba(255,255,255,.02) 48%,rgba(255,255,255,0) 100%);--glass-shadow-sm:0 4px 14px rgba(0,0,0,.28),inset 0 1px 0 rgba(255,255,255,.1)}}
+:root[data-theme="dark"]{--sheen:linear-gradient(135deg,rgba(255,255,255,.09) 0%,rgba(255,255,255,.02) 48%,rgba(255,255,255,0) 100%);--glass-shadow-sm:0 4px 14px rgba(0,0,0,.28),inset 0 1px 0 rgba(255,255,255,.1)}
+/* frame utama: blur latar + kilau diagonal */
+.side,.pipe,.tpanel,.panel,.stat,.icard,.search,.pillsel,.iconbtn,.sheet,.modal{background-image:var(--sheen)}
+#ddm{background:var(--glass-strong) var(--sheen);-webkit-backdrop-filter:var(--blur);backdrop-filter:var(--blur);
+  border:1px solid var(--glass-edge);box-shadow:0 22px 48px rgba(20,20,20,.2),inset 0 1px 0 rgba(255,255,255,.7)}
+/* kotak di dalam frame: translusen + kilau + tepi terang + bayangan lembut */
+.stage,.scheme,.sec,.fchip,.btn,.kchip,.toggle,.fld input,.fld select,.licin,.modal textarea,.tw,.thead,.chip2,.org,.agrid-h{
+  background-color:var(--glass-soft);background-image:var(--sheen);
+  border:1px solid var(--glass-edge);box-shadow:var(--glass-shadow-sm)}
+.stage{border-width:1.5px}
+.org{box-shadow:var(--glass-shadow-sm)}
+.org .ico,.stage .chip{background:var(--glass-strong)}
+.trow:hover,.agrow:hover{background:var(--glass-soft)}
+@media (prefers-reduced-transparency:reduce){:root{--sheen:none}}
 </style>
 
 <div class="app" id="app">
