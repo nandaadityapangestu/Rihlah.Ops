@@ -741,14 +741,12 @@ th{background:var(--glass-soft)}
 /* Banner hero: foto hijau + kotak kaca transparan 25% dengan blur */
 .dh{position:relative;display:flex;flex-direction:column;justify-content:space-between;gap:22px;min-height:260px;padding:24px 26px;border-radius:24px;overflow:hidden;isolation:isolate;color:#141414;
   border:1px solid var(--glass-edge);
-  background:url("assets/hero-poster.jpg") center/cover no-repeat #a9c6cc}
-.dh-video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:-2;pointer-events:none}
-/* lapisan pudar: menjaga teks gelap tetap terbaca di atas video yang terang/gelap */
+  background:url("assets/hero-kabah.jpg") center 84%/cover no-repeat #3aa9b8}
+/* lapisan pudar: menjaga teks gelap tetap terbaca di atas foto */
 .dh::before{content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;
   background:
     linear-gradient(90deg,rgba(246,251,241,.82) 0%,rgba(246,251,241,.4) 36%,rgba(246,251,241,0) 66%),
     linear-gradient(0deg,rgba(246,251,241,.5) 0%,rgba(246,251,241,.2) 42%,rgba(246,251,241,0) 68%)}
-@media (prefers-reduced-motion:reduce){.dh-video{display:none}}
 .dh-txt h2{margin:0 0 6px;font-size:clamp(1.4rem,2.4vw,2rem);font-weight:600;letter-spacing:-.02em;line-height:1.1}
 .dh-txt p{max-width:46ch;font-size:.9rem;color:rgba(20,20,20,.74)}
 .dh-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}
@@ -757,7 +755,10 @@ th{background:var(--glass-soft)}
   -webkit-backdrop-filter:blur(16px) saturate(140%);backdrop-filter:blur(16px) saturate(140%);
   border:1px solid rgba(255,255,255,.6);box-shadow:0 6px 20px rgba(20,50,20,.12),inset 0 1px 0 rgba(255,255,255,.5)}
 .dh-box small{display:block;font-size:.78rem;font-weight:600;color:rgba(20,20,20,.74)}
-.dh-box b{display:block;margin:4px 0 2px;font-size:1.45rem;font-weight:500;letter-spacing:-.02em;line-height:1.1;overflow-wrap:anywhere}
+.dh-hd{display:flex;align-items:center;gap:10px}
+.dh-ic{display:grid;place-items:center;flex:none;width:32px;height:32px;border-radius:50%;background:var(--lime);color:var(--lime-fg);box-shadow:0 2px 8px rgba(20,40,10,.14)}
+.dh-ic svg.ic{width:17px;height:17px}
+.dh-box b{display:block;margin:10px 0 2px;font-size:1.45rem;font-weight:500;letter-spacing:-.02em;line-height:1.1;overflow-wrap:anywhere}
 .dh-box b .dh-of{display:inline;font-size:.9rem;font-weight:500}
 .dh-box>span{display:block;font-size:.78rem;color:rgba(20,20,20,.7)}
 @media (max-width:900px){.dh-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
@@ -947,6 +948,7 @@ IC.coin='<circle cx="12" cy="12" r="9"/><path d="M14.6 9.4c-.5-.9-1.4-1.4-2.6-1.
 IC.bed='<path d="M3 19V6M3 15h18v4M21 15v-3a3 3 0 0 0-3-3h-7v6"/><circle cx="7" cy="11.5" r="1.8"/>';
 IC.box='<path d="M3 8l9-5 9 5v8l-9 5-9-5z"/><path d="M3 8l9 5 9-5M12 13v8"/>';
 IC.plus='<path d="M12 5v14M5 12h14"/>';
+IC.alert='<path d="M12 3.5l9.5 16.5h-19z"/><path d="M12 10v4.5M12 17.3v.1"/>';
 var NAVICON={dashboard:'grid',keberangkatan:'cal',pembayaran:'wallet',kamar:'bed',manifest:'list',inventori:'box',keagenan:'users',tindakan:'check',kepatuhan:'shield',kurs:'coin'};
 var CHEV='<svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg>';
 var CHEVD='<svg class="chev ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>';
@@ -1236,13 +1238,13 @@ function heroHTML(sc){
   var t={n:sc.length,siap:0,kritis:0,tagihan:0,terbayar:0};
   sc.forEach(function(p){var d=depOf(p)||{price:0};if(stat(p)==='lengkap')t.siap++;if(stat(p)==='kritis')t.kritis++;t.tagihan+=d.price;t.terbayar+=Math.min(paidOf(p),d.price);});
   var pr=t.tagihan>0?Math.round(t.terbayar/t.tagihan*100):0;
-  function box(l,v,n){return '<div class="dh-box"><small>'+l+'</small><b class="num">'+v+'</b><span>'+n+'</span></div>';}
-  return '<section class="dh" aria-label="Ringkasan"><video class="dh-video" autoplay muted loop playsinline preload="metadata" poster="assets/hero-poster.jpg" aria-hidden="true" tabindex="-1"><source src="assets/hero-ramadan.mp4" type="video/mp4"></video><div class="dh-txt"><h2>Kesiapan Jamaah</h2><p>Pantau dokumen, visa, dan pelunasan semua keberangkatan dari satu tempat.</p></div>'+
+  function box(ic,l,v,n){return '<div class="dh-box"><div class="dh-hd"><i class="dh-ic"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true">'+IC[ic]+'</svg></i><small>'+l+'</small></div><b class="num">'+v+'</b><span>'+n+'</span></div>';}
+  return '<section class="dh" aria-label="Ringkasan"><div class="dh-txt"><h2>Kesiapan Jamaah</h2><p>Pantau dokumen, visa, dan pelunasan semua keberangkatan dari satu tempat.</p></div>'+
     '<div class="dh-grid">'+
-      box('Total jamaah',t.n,S.deps.length+' paket keberangkatan')+
-      box('Siap berangkat',t.siap+' <small class="dh-of">/ '+t.n+'</small>','dokumen lengkap')+
-      box('Perlu segera',t.kritis,t.kritis?'butuh tindakan':'semua aman')+
-      box('Terbayar',esc(idrS(t.terbayar)),pr+'% dari tagihan')+
+      box('users','Total jamaah',t.n,S.deps.length+' paket keberangkatan')+
+      box('check','Siap berangkat',t.siap+' <small class="dh-of">/ '+t.n+'</small>','dokumen lengkap')+
+      box('alert','Perlu segera',t.kritis,t.kritis?'butuh tindakan':'semua aman')+
+      box('wallet','Terbayar',esc(idrS(t.terbayar)),pr+'% dari tagihan')+
     '</div></section>';
 }
 function vDashboard(){
