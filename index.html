@@ -770,13 +770,22 @@ th{background:var(--glass-soft)}
 /* ===== Minimalis: latar abu-abu #D1D1D1, kartu putih bergaris tipis, jarak dan font lebih rapi ===== */
 :root{
   --bg:#D1D1D1;--surface:#FFFFFF;--panel:#FAFAF8;--card:#F3F3F0;--card-2:#E9E9E5;--line:#E8E8E3;--muted:#4E524C;
-  --glass:#FFFFFF;--glass-strong:#FFFFFF;--glass-soft:#F6F6F3;--glass-edge:#E8E8E3;
-  --glass-shadow:0 1px 2px rgba(20,24,20,.04),0 4px 14px rgba(20,24,20,.04);
-  --blur:none;--o1:transparent;--o2:transparent;--o3:transparent;--o4:transparent;
+  --glass:rgba(255,255,255,.5);--glass-strong:rgba(255,255,255,.72);--glass-soft:rgba(255,255,255,.4);--glass-edge:rgba(255,255,255,.72);
+  --glass-shadow:0 8px 32px rgba(30,36,32,.12),inset 0 1px 0 rgba(255,255,255,.7);
+  --blur:blur(20px) saturate(160%);--o1:transparent;--o2:transparent;--o3:transparent;--o4:transparent;
 }
 @media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--o1:transparent;--o2:transparent;--o3:transparent;--o4:transparent}}
 :root[data-theme="dark"]{--o1:transparent;--o2:transparent;--o3:transparent;--o4:transparent}
 body{font-size:14px;line-height:1.5}
+/* latar: abu-abu #D1D1D1 + foto Ka'bah (multiply, opacity 30%) */
+body::before{inset:0;will-change:auto;animation:none;background:var(--bg)}
+body::after{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;
+  background:url("assets/bg-kabah.jpg") center 40%/cover no-repeat;mix-blend-mode:multiply;opacity:.3}
+/* mode gelap: multiply pada latar gelap tidak terlihat, pakai screen tipis */
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) body::after{mix-blend-mode:screen;opacity:.12}}
+:root[data-theme="dark"] body::after{mix-blend-mode:screen;opacity:.12}
+/* glassmorphism: drawer dan modal sedikit lebih pekat agar form tetap terbaca */
+.sheet,.modal{background:var(--glass-strong)}
 .app{gap:24px;padding-block:24px}
 .main,.view{gap:20px}
 .mhead h1{font-size:clamp(1.5rem,2.2vw,1.85rem);font-weight:600;letter-spacing:-.02em}
@@ -817,6 +826,8 @@ th{font-size:.72rem}
 .g2{gap:14px}
 .tier{gap:10px}
 .legend{font-size:.78rem}
+@supports not ((backdrop-filter:blur(1px)) or (-webkit-backdrop-filter:blur(1px))){:root{--glass:rgba(255,255,255,.9);--glass-strong:#FFFFFF;--glass-soft:#F4F4F1}}
+@media (prefers-reduced-transparency:reduce){:root{--glass:#FFFFFF;--glass-strong:#FFFFFF;--glass-soft:#F4F4F1;--blur:none}}
 </style>
 
 <div class="app" id="app">
